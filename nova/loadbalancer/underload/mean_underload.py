@@ -106,6 +106,7 @@ class MeanUnderload(Base):
         nova_utils.execute('ether-wake', mac_to_wake, run_as_root=True)
         db.compute_node_update(context, node['id'],
                                {'suspend_state': 'active'})
+        return True
 
     def _host_is_empty(self, context, host):
         alive_instances = InstanceList.get_by_filters(

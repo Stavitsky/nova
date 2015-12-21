@@ -22,6 +22,7 @@ class ViewBuilder(common.ViewBuilder):
     _collection_name = "loadbalancer"
 
     def basic(self, request, node):
+        print "NODE: %s" % node
         return {
             "node": {
                 "hypervisor_hostname": node["hypervisor_hostname"],

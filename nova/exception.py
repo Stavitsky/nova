@@ -1882,3 +1882,7 @@ class NUMATopologyUnsupported(Invalid):
 
 class MemoryPagesUnsupported(Invalid):
     msg_fmt = _("Host does not support guests with custom memory page sizes")
+
+
+class LbRuleNotFound(NotFound):
+    msg_fmt = _("LoadBalancer Rule %(lb_rule_id)s could not be found.")

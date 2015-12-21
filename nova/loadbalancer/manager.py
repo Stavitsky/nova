@@ -21,7 +21,7 @@ from nova.openstack.common import periodic_task
 from oslo_log import log as logging
 from oslo_config import cfg
 from stevedore import driver
-from statistics import make_stats
+#from statistics import make_stats
 
 
 lb_opts = [
@@ -29,7 +29,7 @@ lb_opts = [
                default='standart_deviation',
                help='Threshold class'),
     cfg.StrOpt('balancer_class',
-               default='classic',
+               default='minimizeSD',
                help='Balancer class'),
     cfg.StrOpt('underload_class',
                default='mean_underload',

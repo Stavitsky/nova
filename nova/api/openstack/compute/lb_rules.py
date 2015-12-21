@@ -56,8 +56,10 @@ class Controller(wsgi.Controller):
         context = req.environ['nova.context']
         """Destroys a server."""
         try:
+            print "TRY TO CALL LoadBalancer().lb_rule_delete()"
             manager.LoadBalancer().lb_rule_delete(context, id)
         except exception.NotFound:
+            print "EXCEPTION CATHED!"
             msg = _("Rule could not be found")
             raise exc.HTTPNotFound(explanation=msg)
 
@@ -65,8 +67,8 @@ class Controller(wsgi.Controller):
     def create(self, req, body):
         context = req.environ['nova.context']
         rule = None
-        if 'lb_rules' in body:
-            rule = body['lb_rules']
+        if 'lb_rule' in body:
+            rule = body['lb_rule']
             if not isinstance(rule['type'], unicode):
                 msg = _("Invalid lbrule type provided.")
                 raise exc.HTTPBadRequest(explanation=msg)
@@ -77,7 +79,7 @@ class Controller(wsgi.Controller):
                 msg = _("allow key should be bool type.")
                 raise exc.HTTPBadRequest(explanation=msg)
             lb_rule = manager.LoadBalancer().lb_rule_create(context, rule)
-            return dict(lb_rules=lb_rule)
+            return dict(lb_rule=lb_rule)
 
     def _get_rules(self, req):
         """Helper function that returns a list of rule dicts."""

@@ -144,6 +144,7 @@ class FakeDriver(driver.ComputeDriver):
             local_gb=self.local_gb)
         self.host_status_base = {
           'hypervisor_type': 'fake',
+          'real_memory_mb_used': self.memory_mb,
           'hypervisor_version': utils.convert_version_to_int('1.0'),
           'hypervisor_hostname': CONF.host,
           'cpu_info': {},

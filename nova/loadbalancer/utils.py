@@ -33,17 +33,17 @@ import re
 CONF = cfg.CONF
 LOG = logging.getLogger(__name__)
 
-nova_client = client.Client(
-    username='nova',
-    password='nova',
-    tenant_name='service',
-    auth_url='http://controller1:5000/v2.0'
-)
-
 image_api = image.API()
 
 
 def get_context():
+    nova_client = client.Client(
+        username='nova',
+        password='nova',
+        tenant_name='service',
+        auth_url='http://controller1:5000/v2.0'
+    )
+
     creds = nova_client
     s_catalog = creds.service_catalog.catalog['serviceCatalog']
     ctx = nova_context.RequestContext(user_id=creds.user_id,
